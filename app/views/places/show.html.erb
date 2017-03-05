@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @place.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @place.longitude %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @place.zip %>
+</p>
+
+<%= link_to 'Edit', edit_place_path(@place) %> |
+<%= link_to 'Back', places_path %>
+
+<h3>Nearby Locations</h3>
+<ul>
+  <% for place in @place.nearbys(10) %>
+    <li><%= link_to place.zip, place %> (<%= place.distance %>)</li>
+  <% end %>
+</ul>
+
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?size=480x480&markers=
+icon:https://chart.apis.google.com/chart?chst=d_map_pin_icon%26chld=cafe%257C996600%7C
+#{@place.latitude}%2C#{@place.longitude}" %>
